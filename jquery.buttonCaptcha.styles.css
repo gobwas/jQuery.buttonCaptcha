@@ -1,0 +1,44 @@
+@charset "utf-8";
+/*!
+ * jQuery.buttonCaptcha - plugin that protect your site from robots using jQuery.
+ * http://www.gobwas.com/bcaptcha
+ * Version: 1.0 beta.
+ *
+ * Copyright 2011, Sergey Kamardin.
+ * Licensed under the MIT license.
+ * http://www.opensource.org/licenses/mit-license.php
+ *
+ * Date: Wed Mar 16 17:19:47 2011 +0300.
+ * Location: Moscow, Russia.
+ * Contact: gobwas[a]gmail.com
+ */
+
+.captcha_gbws_wrap		{margin:25px 0;}
+.captcha_gbws			{float:left;}
+/* Top part of Captcha: */
+.captcha_top			{clear:both; font-size:10px; color:#818285;}
+.captcha_lock			{float:left; width:16px; height:26px; background:url('images/lock.png') center no-repeat;}
+.captcha_unlock			{float:left; width:16px; height:26px; margin-left:-8px; background:url('images/unlock.png') center no-repeat;}
+.captcha_showtip		{float:left; margin:5px 0 0 5px; font-size:10px; color:#818285;}
+.captcha_showtip:hover	{color:#00aeef; cursor:pointer;}
+.captcha_tip			{clear:both;color:#00aeef;font-size:10px; margin:5px 0;}
+.captcha_retake			{position:absolute; right:3px; top:3px; width:10px; height:11px; right:0; background:url('images/retake.png') no-repeat;}
+.captcha_retake:hover	{background:url('images/retake_hover.png') no-repeat; cursor:pointer;}
+/* Inner part of Captcha: */
+.captcha_left			{float:left; height:78px; width:15px; background:url('images/left.png') no-repeat;}
+.captcha_blue			{float:left; position:relative; height:78px; background:url('images/blue_back.png') repeat-x;}
+.captcha_delshadow		{float:left; position:absolute; right:0; top:1px; height:76px; width:15px; background:url('images/del_shadow.png') repeat-y;}
+.captcha_white			{float:left; position:relative; height:78px; z-index:1;padding-left:10px; background:url('images/white_back.png') repeat-x;}
+.captcha_zone			{float:left; height:24px;}
+.captcha_right			{float:left; height:78px; width:4px; background:url('images/right.png') no-repeat;}
+.letters				{margin:25px 15px 25px 0px;}
+.letter					{float:left; cursor:pointer; z-index:100; width:18px; height:24px; background:url('images/letters_black.png') no-repeat;}
+.zone_letter			{float:left; z-index:10; width:18px; height:24px; margin-right:-4px; background:url('images/letters_grey.png') no-repeat;}
+.zone_dot				{float:left; z-index:10; width:12px; height:24px; margin-right:-4px; background:url('images/dot.png') no-repeat;}
+.letter_blue			{float:left; width:18px; height:24px; background:url('images/letters_blue.png') no-repeat;}
+.letter_red				{float:left; width:18px; height:24px; background:url('images/letters_red.png') no-repeat;}
+.baskets				{margin:25px 10px;z-index:2}
+.basket					{width:18px; height:24px; border:1px dotted #dedede; float:left;}
+.basket-hover			{}
+.basket_closed			{width:18px; height:24px; border:1px solid transparent; margin-left:-1px; float:left; border-collapse:collapse;}
+.input_gbws				{width:1px; height:1px; position:absolute; top:-1000px;}
