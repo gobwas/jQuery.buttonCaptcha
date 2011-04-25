@@ -3,7 +3,7 @@ jQuery.buttonCaptcha : How To //////////////////////////////////////////////////
 ==================================================================================
 
 	jQuery.buttonCaptcha - plugin that protects your site from robots using jQuery.
-	Version: 1.0 beta.
+	Version: 1.01.
 
 	Copyright 2011, Sergey Kamardin.
 
@@ -13,19 +13,19 @@ jQuery.buttonCaptcha : How To //////////////////////////////////////////////////
 	Licensed under the MIT license.
 	http://www.opensource.org/licenses/mit-license.php
 
-	Date: 		Wed Mar 16 17:19:47 2011 +0300.
+	Date: 		Wed Apr 25 11:19:47 2011 +0300.
 	Location: 	Moscow, Russia.
-	Contact: 	gobwas@gmail.com
+	Contact: 	gobwas@gobwas.com
 
 ==================================================================================
-What do I need to use it? ////////////////////////////////////////////////////////|
+What do I need for use it? //////////////////////////////////////////////////////|
 ==================================================================================
 
 	Thanks for using jQuery.buttonCaptcha!
 
 	To use it on your perfect site you need five things:
 
-		a) jquery library file (1.4.4 and higher);
+		a) jquery library file (1.3.0 and higher);
 		b) jquery ui library file (1.8.9 and higher);
 		c) jquery.buttonCaptcha.js file;
 		d) jquery.buttonCaptcha.styles.css file;
@@ -135,3 +135,9 @@ Where can i get jquery libraries? //////////////////////////////////////////////
 
 	http://jqueryui.com/
 	http://jquery.com/
+
+==================================================================================
+jQuery.buttonCaptcha : Change List////////////////////////////////////////////////|
+==================================================================================
+
+25.04.2011// 1.0 beta -> 1.01 : Added compatibility with jQuery 1.3.0.

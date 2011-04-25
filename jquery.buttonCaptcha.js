@@ -1,15 +1,15 @@
 /*!
  * jQuery.buttonCaptcha - plugin that protects your site from robots using jQuery.
- * http://www.gobwas.com/jquery
- * Version: 1.0 beta.
+ * http://www.gobwas.com/bcaptcha
+ * Version: 1.01.
  *
  * Copyright 2011, Sergey Kamardin.
  * Licensed under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
  *
- * Date: Wed Mar 16 17:19:47 2011 +0300.
+ * Date: Wed Apr 25 11:19:47 2011 +0300.
  * Location: Moscow, Russia.
- * Contact: gobwas[a]gmail.com
+ * Contact: gobwas[a]gobwas.com
  */
 
 (function($){
@@ -20,13 +20,13 @@
 			hideButton		:	true,						// if true, then button, which you passed to the buttonCaptcha will be hidden till unlock;
 			hideCaptcha		:	false,						// if true, then Captcha will fade out when unlocked;
 			lockButton		:	true,						// if true, then button will be disabled till unlock;
-			scrollToButton	: 	false,						// if true, then when Captcha unlocked, will be autoscroll to the button.
-															// need to use a jQuery.scrollTo plugin (google knows where);
+			scrollToButton	: 	false,						// if true, then when Captcha unlocked, will be autoscroll to the button  (need a jQuery.scrollTo plugin!!!);
 			verifyInput		:	true,						// if true, then to the first parent form will be attached a hidden field with the value of deferred letters.
 			verifyName		:	'gbws_captcha_input',		// the name of hidden field;
 			captchaHeader	:	'Are you a robot?',			// question above the Captcha;
-			captchaTip		: 	'Drag letters from left to right, to get word "%code_word%". Thanks!' 	// tip text; remember that you must save %code_word% tag! 
+			captchaTip		: 	'Drag letters from left to right, to get word "%code_word%". Thanks!', 	// tip text; remember that you must save %code_word% tag! 
 																										// For example : < Hello, make this word: %code_word% >
+			captchaUnlocked	:	'Unlocked!'					// text for the header of captcha when it unlocked;
 		}
 		
 		$.extend(options,userOptions); // apply userOptions, and then calculate captchaTip and codeWord length (options.letters);
@@ -100,6 +100,7 @@
 				var div=$('<div/>')
 							.attr('class','zone_dot')
 							.appendTo(cfg.structure.contains.zone);
+				var zone_len=12;
 				for (var x=0; x<letters.length; x++) {
 					findLetter=letters.charAt(x).toLowerCase();
 					var sprite=cfg.lettersSprite[findLetter];
@@ -107,7 +108,9 @@
 							.attr('class','zone_letter')
 							.css('background-position',sprite+'px 0')
 							.appendTo(cfg.structure.contains.zone);
+					zone_len+=18;
 				}
+				cfg.structure.contains.zone.css('width',zone_len+'px');
 			}
 		})();
 		
@@ -219,7 +222,7 @@
 					}
 					if (options.codeZone!=false) $(cfg.structure.contains.zone).clone().appendTo(div);
 					var zone=$(cfg.structure.contains.end).clone().appendTo(div);
-					$(div).appendTo(part).css('width',((cfg.lettersDivs.length*18)+cfg.lettersDivs.length*2+zone.css('width'))+'px');
+					$(div).appendTo(part).css('width',((cfg.lettersDivs.length*18)+cfg.lettersDivs.length*2+cfg.structure.contains.zone.css('width'))+'px');
 				};
 				// function, that makes Captcha;
 				function wrap(button) {
@@ -314,9 +317,10 @@
 				}
 				// function, that unlock button;
 				function setNotRobot() {
+						if (options.lockButton===true) $(cfgL.button).removeAttr('disabled');
+						
 						if (options.hideCaptcha===true) {
 							$(cfgL.captcha).fadeOut(1000, function(){
-								if (options.lockButton===true) $(cfgL.button).removeAttr('disabled');
 								if (options.hideButton===true) {
 									$(cfgL.button).fadeIn(600, function() {
 										if (options.scrollToButton===true) $.scrollTo(cfgL.button, 500);
@@ -327,10 +331,9 @@
 						else {
 							var div=$('<div/>').attr('class','captcha_human').append(cfgL.lock).appendTo(cfgL.blue);
 							cfgL.lock.attr('class','captcha_unlock');
-							cfgL.top.html('Unlocked!');
+							cfgL.top.html(options.captchaUnlocked);
 							cfgL.retake.remove();
 							
-							if (options.lockButton===true) $(cfgL.button).removeAttr('disabled');
 							if (options.hideButton===true) {
 								$(cfgL.button).fadeIn(300, function() {
 									if (options.scrollToButton===true) $.scrollTo(cfgL.button, 500);

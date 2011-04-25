@@ -1,16 +1,16 @@
 @charset "utf-8";
 /*!
- * jQuery.buttonCaptcha - plugin that protect your site from robots using jQuery.
+ * jQuery.buttonCaptcha - plugin that protects your site from robots using jQuery.
  * http://www.gobwas.com/bcaptcha
- * Version: 1.0 beta.
+ * Version: 1.01.
  *
  * Copyright 2011, Sergey Kamardin.
  * Licensed under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
  *
- * Date: Wed Mar 16 17:19:47 2011 +0300.
+ * Date: Wed Apr 25 11:19:47 2011 +0300.
  * Location: Moscow, Russia.
- * Contact: gobwas[a]gmail.com
+ * Contact: gobwas[a]gobwas.com
  */
 
 .captcha_gbws_wrap		{margin:25px 0;}
