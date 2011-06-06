@@ -1,13 +1,13 @@
 /*!
  * jQuery.buttonCaptcha - plugin that protects your site from robots using jQuery.
  * http://www.gobwas.com/bcaptcha
- * Version: 1.01.
+ * Version: 1.02.
  *
  * Copyright 2011, Sergey Kamardin.
  * Licensed under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
  *
- * Date: Wed Apr 25 11:19:47 2011 +0300.
+ * Date: Mon Jun 6 19:03:51 2011 +0300.
  * Location: Moscow, Russia.
  * Contact: gobwas[a]gobwas.com
  */
@@ -86,6 +86,7 @@
 					var sprite=cfg.lettersSprite[findLetter];
 					var div=$('<div/>')
 							.attr('class','letter')
+							.attr('bcCode',letters.charCodeAt(x))		// innovation of 1.02
 							.css('background-position',sprite+'px 0');
 					divs.push(div);
 				}
@@ -152,7 +153,7 @@
 						if ($.inArray(x,divs_appended)==-1) {
 							$(cfg.lettersDivs[x])
 															.clone()
-															.attr('id','letter_'+(x)+'_'+cfgL.captchas)
+															.attr('id','letter_'+cfg.lettersDivs[x].attr('bccode')+'_'+(x)+'_'+cfgL.captchas)  // innovation of 1.02 : cfg.lettersDivs[x].attr('bccode') from (x)
 															.appendTo(div)
 															.draggable({
 																revert: true,
@@ -175,7 +176,7 @@
 					var div=$('<div/>').attr('id','baskets_'+cfgL.captchas).attr('class','baskets');
 					for (var x in cfg.lettersDivs) {
 						var basket=$('<div/>')
-									.attr('id','basket_'+x+'_'+cfgL.captchas)
+									.attr('id','basket_'+cfg.lettersDivs[x].attr('bccode')+'_'+(x)+'_'+cfgL.captchas)  // innovation of 1.02 : cfg.lettersDivs[x].attr('bccode') from (x)
 									.attr('class','basket');
 						if (Number(x)!=(cfg.lettersDivs.length-1)) basket.css('border-right','none');
 						$(basket).droppable({
@@ -195,10 +196,11 @@
 											.attr('class','basket_closed')
 											.append(clone);
 									
+									
 									var letter_ids=$(ui.draggable).attr('id'); letter_ids=letter_ids.split('_');
 									var basket_ids=$(this).attr('id'); basket_ids=basket_ids.split('_');
 		
-									if (letter_ids[1]==basket_ids[1] && letter_ids[2]==basket_ids[2]) {
+									if (letter_ids[1]==basket_ids[1] && letter_ids[3]==basket_ids[3]) {
 										$(this).fadeOut(100, function(){$(this).fadeIn(500)});
 										$(clone).attr('class','letter_blue');
 										cfgL.goodLetters++;
@@ -211,7 +213,7 @@
 	
 									if (options.verifyInput===true) {
 										cfgL.stepsLength++;
-										cfgL.steps[basket_ids[1]]=letter_ids[1];
+										cfgL.steps[basket_ids[2]]=letter_ids[2];
 										if (cfgL.stepsLength==options.letters) setVerify();
 									}
 									

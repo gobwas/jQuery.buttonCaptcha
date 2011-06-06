@@ -3,7 +3,7 @@ jQuery.buttonCaptcha : How To //////////////////////////////////////////////////
 ==================================================================================
 
 	jQuery.buttonCaptcha - plugin that protects your site from robots using jQuery.
-	Version: 1.01.
+	Version: 1.02.
 
 	Copyright 2011, Sergey Kamardin.
 
@@ -13,7 +13,7 @@ jQuery.buttonCaptcha : How To //////////////////////////////////////////////////
 	Licensed under the MIT license.
 	http://www.opensource.org/licenses/mit-license.php
 
-	Date: 		Wed Apr 25 11:19:47 2011 +0300.
+	Date: 		Mon Jun 6 19:03:51 2011 +0300.
 	Location: 	Moscow, Russia.
 	Contact: 	gobwas@gobwas.com
 
@@ -141,3 +141,4 @@ jQuery.buttonCaptcha : Change List//////////////////////////////////////////////
 ==================================================================================
 
 25.04.2011// 1.0 beta -> 1.01 : Added compatibility with jQuery 1.3.0.
+06.06.2011// 1.01 -> 1.02 : Changed bug for situation, where you have several identical letters in the code word.
