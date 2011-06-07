@@ -1,13 +1,13 @@
 /*!
  * jQuery.buttonCaptcha - plugin that protects your site from robots using jQuery.
  * http://www.gobwas.com/bcaptcha
- * Version: 1.02.
+ * Version: 1.1
  *
  * Copyright 2011, Sergey Kamardin.
  * Licensed under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
  *
- * Date: Mon Jun 6 19:03:51 2011 +0300.
+ * Date: Mon Jun 7 17:15:07 2011 +0300.
  * Location: Moscow, Russia.
  * Contact: gobwas[a]gobwas.com
  */
@@ -23,6 +23,8 @@
 			scrollToButton	: 	false,						// if true, then when Captcha unlocked, will be autoscroll to the button  (need a jQuery.scrollTo plugin!!!);
 			verifyInput		:	true,						// if true, then to the first parent form will be attached a hidden field with the value of deferred letters.
 			verifyName		:	'gbws_captcha_input',		// the name of hidden field;
+			verifyMustBe	:	false,						// if true, then to the first parent form will be attached a hidden field with the needed value of captcha to be unlocked. ******* (v1.1)
+			verifyMustName	:	'gbws_captcha_must_input',	// the name of hidden field; ******* (v1.1)
 			captchaHeader	:	'Are you a robot?',			// question above the Captcha;
 			captchaTip		: 	'Drag letters from left to right, to get word "%code_word%". Thanks!', 	// tip text; remember that you must save %code_word% tag! 
 																										// For example : < Hello, make this word: %code_word% >
@@ -31,10 +33,24 @@
 		
 		$.extend(options,userOptions); // apply userOptions, and then calculate captchaTip and codeWord length (options.letters);
 		
+		var alphabet=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','1','2','3','4','5','6','7','8','9','0'];  // innovation of 1.03
+		
+		
+		// ******* Here innovation of v1.1 - randomizing captcha, if codeWord set as number:
+		if(typeof(options.codeWord)=='number') {
+			var q=options.codeWord;
+			options.codeWord='';
+			for (var w=0; w<q; w++) {
+				var rnd=Math.floor(Math.random() * ((alphabet.length-1) - 0 + 1)) + 0;
+				options.codeWord+=alphabet[rnd];
+			}
+		}
+		// ******* 
+		
 		options.captchaTip=options.captchaTip.replace('%code_word%','<b>'+options.codeWord+'</b>')
 		options.letters=options.codeWord.length;
 		
-		var alphabet=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+		
 		
 		// cfg - is a global configuration object, who is using by each exemplar of Captcha;
 		
@@ -96,7 +112,7 @@
 		
 		// generating codeZone to Captcha, and saving it to cfg.structure:
 		(function() {
-			if (options.codeZone.match(/[a-zA-Z0-9]{2,4}/)!=null) {
+			if (options.codeZone!==false && options.codeZone.match(/[a-zA-Z0-9]{2,4}/)!=null) {
 				var letters=options.codeZone;
 				var div=$('<div/>')
 							.attr('class','zone_dot')
@@ -310,6 +326,19 @@
 							cfgL.verify=input;
 						}
 					}
+					
+					//  ******* Innovation of v1.1
+					if (options.verifyMustBe===true) {
+						var must=$('<input/>', {
+								type:'hidden',
+								name:options.verifyMustName,
+								id:'input_gbws_must_'+cfgL.captchas,
+								value: options.codeWord
+						}).attr('class','input_gbws');
+						$(cfgL.button).parents('form:first').append(must);
+						cfgL.must=must;	
+					} 
+					//  ******* 
 				}
 				// function, that puts value of Captcha to the hidden input of form (if enabled in options);
 				function setVerify() {

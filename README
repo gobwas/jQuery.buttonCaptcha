@@ -3,7 +3,7 @@ jQuery.buttonCaptcha : How To //////////////////////////////////////////////////
 ==================================================================================
 
 	jQuery.buttonCaptcha - plugin that protects your site from robots using jQuery.
-	Version: 1.02.
+	Version: 1.1
 
 	Copyright 2011, Sergey Kamardin.
 
@@ -13,7 +13,7 @@ jQuery.buttonCaptcha : How To //////////////////////////////////////////////////
 	Licensed under the MIT license.
 	http://www.opensource.org/licenses/mit-license.php
 
-	Date: 		Mon Jun 6 19:03:51 2011 +0300.
+	Date: 		Mon Jun 7 17:15:07 2011 +0300.
 	Location: 	Moscow, Russia.
 	Contact: 	gobwas@gobwas.com
 
@@ -109,6 +109,8 @@ What do I need for use it? /////////////////////////////////////////////////////
 		scrollToButton		: 	false,		// Need to use a jQuery.scrollTo plugin (google knows where); if it true, when Captcha unlocked, will be autoscroll to the button.
 		verifyInput		:	true,		// if it true, to the first parent form will be attached a hidden field with the value of deferred letters.
 		verifyName		:	'gbws_captcha_input',	// the name of hidden field;
+		verifyMustBe		:	false,		// if true, then to the first parent form will be attached a hidden field with the needed value of captcha to be unlocked. ******* (v1.1)
+		verifyMustName		:	'gbws_captcha_must_input',	// the name of hidden field; ******* (v1.1)
 		captchaHeader		:	'Are you a robot?',	// question above the Captcha;
 		captchaTip		: 	'Drag letters from left to right, to get word "%code_word%". Thanks!' 	// tip text; remember that you must save %code_word% tag! 																								// For example : < Hello, make this word: %code_word% >
 		captchaUnlocked		:	'Unlocked!'	// text for the header of captcha when it unlocked;
@@ -122,8 +124,21 @@ What do I need for use it? /////////////////////////////////////////////////////
 		captchaHeader:'Humanoid?',
 		captchaTip:'Just drag letters!',
 		verifyInput:true,
-		verifyName:'hidden_field_my_site'
+		verifyName:'hidden_field_my_site',
+		verifyMustBe:true,
+		verifyMustName:'hidden_field_real_my_site'
 	});
+	
+	In version 1.1 added functionality of randomizing captcha when refreshing page. To use this possibility, set codeWord as number. Just like this:
+	
+
+	$('#form button').buttonCaptcha({
+		codeWord:5,
+		codeZone:false
+	});
+
+	The number, that you give to codeWord - it is a number of letters in randomized codeWord.
+	
 
 	Ok! Sorry for my english, enjoy buttonCaptcha and if you'll need help - contact me!
 
@@ -141,4 +156,9 @@ jQuery.buttonCaptcha : Change List//////////////////////////////////////////////
 ==================================================================================
 
 25.04.2011// 1.0 beta -> 1.01 : Added compatibility with jQuery 1.3.0.
-06.06.2011// 1.01 -> 1.02 : Changed bug for situation, where you have several identical letters in the code word.
+06.06.2011// 1.01 -> 1.02 : Bug fixed in situation when you have several identical letters in the code word.
+07.06.2011// 1.02 -> 1.1 : Added functionality: 	a) 	Now it available to use numbers in codeWord;
+							b) 	Added possibility to randomize codeWord in each refresh - you must set codeWord as number (without quotes);
+							c) 	Added possibility to generate hidden input with needed value of buttonCaptcha - 
+								for comparing values of hidden inputs (options verify and verifyMustBe) in server php scripts.
+

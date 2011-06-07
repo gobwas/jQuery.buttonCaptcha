@@ -2,13 +2,13 @@
 /*!
  * jQuery.buttonCaptcha - plugin that protects your site from robots using jQuery.
  * http://www.gobwas.com/bcaptcha
- * Version: 1.02.
+ * Version: 1.1
  *
  * Copyright 2011, Sergey Kamardin.
  * Licensed under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
  *
- * Date: Mon Jun 6 19:03:51 2011 +0300.
+ * Date: Mon Jun 7 17:15:07 2011 +0300.
  * Location: Moscow, Russia.
  * Contact: gobwas[a]gobwas.com
  */
@@ -19,8 +19,8 @@
 .captcha_top			{clear:both; font-size:10px; color:#818285;}
 .captcha_lock			{float:left; width:16px; height:26px; background:url('images/lock.png') center no-repeat;}
 .captcha_unlock			{float:left; width:16px; height:26px; margin-left:-8px; background:url('images/unlock.png') center no-repeat;}
-.captcha_showtip		{float:left; margin:5px 0 0 5px; font-size:10px; color:#818285;}
-.captcha_showtip:hover	{color:#00aeef; cursor:pointer;}
+.captcha_showtip		{float:left; margin:5px 0 0 5px; font-size:10px; color:#818285; border-bottom:1px dotted #818285; padding-bottom:1px;}
+.captcha_showtip:hover	{color:#00aeef; cursor:pointer; border-bottom:1px dotted #00aeef;}
 .captcha_tip			{clear:both;color:#00aeef;font-size:10px; margin:5px 0;}
 .captcha_retake			{position:absolute; right:3px; top:3px; width:10px; height:11px; right:0; background:url('images/retake.png') no-repeat;}
 .captcha_retake:hover	{background:url('images/retake_hover.png') no-repeat; cursor:pointer;}
