@@ -80,7 +80,7 @@ What do I need for use it? /////////////////////////////////////////////////////
 			<script type="text/javascript">
 				$(document).ready(function() {
 					$("#button").buttonCaptcha();
-				}
+				});
 			</script>
 		</body>
 	</html>
